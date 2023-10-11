@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import datetime
 import uuid
+from models import storage
 
 class BaseModel:
         
@@ -17,6 +18,7 @@ class BaseModel:
                 if key == "created_at" or key == "updated_at":
                     value = datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 setattr(self, key, value)
+                storage.new(self)
 
         #otherwise
         if "id" not in kwargs.keys():
@@ -25,6 +27,7 @@ class BaseModel:
             self.created_at = datetime.datetime.now()
         if "updated_at" not in kwargs.keys():
             self.updated_at = datetime.datetime.now()
+        storage.new(self)
 
 
     def __str__(self):
@@ -32,6 +35,7 @@ class BaseModel:
     
     def save(self):
         self.updated_at = datetime.datetime.now()
+        storage.save()
     
     def to_dict(self):
         obj_dict = self.__dict__.copy()
