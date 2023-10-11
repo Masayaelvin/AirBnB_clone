@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import json
-from uuid import UUID 
 
 class FileStorage:
     __file_path = "file.json"
@@ -12,18 +11,15 @@ class FileStorage:
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         key = str(obj.__class__.__name__) + "." + str(obj.id)
-        self.__objects[key] = obj
+        value_dict = obj
+        FileStorage.__objects[key] = value_dict
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""
         objects_dict = {}
-        for key, val in self.__objects.items():
-            if isinstance(val, UUID):
-                object_dict[key] = str(val)
-            else:
-                objects_dict[key] = val.to_dict()
-
-        with open(self.__file_path, "w") as f:
+        for key, val in FileStorage.__objects.items():
+            objects_dict[key] = val.to_dict()
+        with open(FileStorage.__file_path, mode='w') as f:
             json.dump(objects_dict, f)
 
     def reload(self):
