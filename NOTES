@@ -10,3 +10,5 @@ FILE: base_model.py
 FILE: file_storage.py
 	Commented out the reload fucntion, bypassed using 'pass'
 	#Hapa bado kuna error
+
+new base 1d7e4e83-caca-4226-82fd-b7f0cca5664e
