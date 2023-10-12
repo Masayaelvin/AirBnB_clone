@@ -1,0 +1,12 @@
+FILE: base_model.py
+	commented out public instance variables
+	Includes the id, created_at and updated_at attributes in the __init__ function
+	Cast the id attribute to string str(uuid.uuid4())
+
+
+	Cast id attribute in 'otherwise' to string str(uuid.uuid4())
+
+
+FILE: file_storage.py
+	Commented out the reload fucntion, bypassed using 'pass'
+	#Hapa bado kuna error
