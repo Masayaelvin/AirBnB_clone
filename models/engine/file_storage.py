@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 import json
 
 class FileStorage:
@@ -24,10 +25,12 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        try:
-            with open(self.__file_path, "r") as f:
-                self.__objects = json.load(f)
-                for key, val in self.__objects.items():
-                    self.__objects[key] = BaseModel(**val)
-        except FileNotFoundError:
-            pass
+        if os.path.isfile(FileStorage.__file_path):
+            try:
+                with open(self.__file_path, "r") as f:
+                    self.__objects = json.load(f)
+                    from models.base_model import BaseModel
+                    for key, val in self.__objects.items():
+                        self.__objects[key] = BaseModel(**val)
+            except FileNotFoundError:
+                pass
