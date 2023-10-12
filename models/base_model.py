@@ -5,12 +5,15 @@ from models import storage
 
 class BaseModel:
         
-    id = uuid.uuid4()
-    created_at = datetime.datetime.now()
-    updated_at = datetime.datetime.now()
+    #id = uuid.uuid4()
+    #created_at = datetime.datetime.now()
+    #updated_at = datetime.datetime.now()
 
     def __init__(self, *args, **kwargs):
         #if kwargs is npot empty
+        id = str(uuid.uuid4())
+        created_at = datetime.datetime.now()
+        updated_at = datetime.datetime.now()
         if kwargs and kwargs != None:
             for key, value in kwargs.items():
                 if key == "__class__":
@@ -22,7 +25,7 @@ class BaseModel:
 
         #otherwise
         if "id" not in kwargs.keys():
-            self.id = uuid.uuid4()
+            self.id = str(uuid.uuid4())
         if "created_at" not in kwargs.keys():
             self.created_at = datetime.datetime.now()
         if "updated_at" not in kwargs.keys():

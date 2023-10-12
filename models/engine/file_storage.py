@@ -24,10 +24,11 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        try:
-            with open(self.__file_path, "r") as f:
-                self.__objects = json.load(f)
-                for key, val in self.__objects.items():
-                    self.__objects[key] = BaseModel(**val)
-        except FileNotFoundError:
-            pass
+        pass
+ #       try:
+ #           with open(self.__file_path, "r") as f:
+ #               self.__objects = json.load(f)
+ #               for key, val in self.__objects.items():
+ #                   self.__objects[key] = BaseModel(**val)
+ #       except FileNotFoundError:
+#            pass
