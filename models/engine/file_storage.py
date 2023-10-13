@@ -23,6 +23,16 @@ class FileStorage:
         with open(FileStorage.__file_path, mode='w') as f:
             json.dump(objects_dict, f)
 
+    def delete(self, obj):
+        """deletes obj from __objects if it’s inside"""
+        check = FileStorage.__objects
+        if obj in check:
+            del check[obj]
+        else:
+            pass
+        
+
+
     def reload(self):
         """deserializes the JSON file to __objects"""
 

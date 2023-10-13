@@ -40,6 +40,10 @@ class BaseModel:
         self.updated_at = datetime.datetime.now()
         storage.save()
     
+    def delete(self):
+        key = self.__class__.__name__ + "." + self.id
+        storage.delete(key)
+    
     def to_dict(self):
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__

@@ -50,8 +50,10 @@ class HBNBCommand(cmd.Cmd):
             key = args[0] + "." + args[1]
             storage_check = storage.all()
             if key in storage_check:
-                del storage_check[key]
+                storage.delete(storage_check[key])    
+                storage.delete(key)
                 storage.save()
+                storage.reload()
             else:
                 print("** no instance found **")
 
