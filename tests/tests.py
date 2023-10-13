@@ -39,6 +39,24 @@ class TestBaseModel(unittest.TestCase):
     def test_args(self):
         base5 = BaseModel(None)
         self.assertNotIn(None, base5.__dict__.values())
+    
+    def test_kwargs(self):
+        base6 = BaseModel()
+        base7 = BaseModel(**base6.to_dict())
+        self.assertEqual(base6.to_dict(), base7.to_dict())
+    
+    def test_kwargs_none(self):
+        base8 = BaseModel(None)
+        base9 = BaseModel(None)
+        self.assertNotEqual(base8.id, base9.id)
+    
+    def test_to_dict(self):
+        base10 = BaseModel()
+        self.assertEqual(type(base10.to_dict()), dict)
+    
+    def test_to_dict_class(self):
+        base11 = BaseModel()
+        self.assertEqual(base11.to_dict()['__class__'], 'BaseModel')
 
 
 
