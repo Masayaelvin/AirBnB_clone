@@ -47,7 +47,11 @@ class FileStorage:
                     from models.amenity import Amenity
                     from models.place import Place
                     from models.review import review
+                    classes = {"BaseModel":BaseModel, "User":User, "State":State, "City":City, "Amenity":Amenity, \
+                               "Place": Place, "review":review}
                     for key, val in self.__objects.items():
-                        self.__objects[key] = BaseModel(**val)
+                        class_name = val["__class__"]
+                        class_name = classes[class_name]
+                        FileStorage.__objects[key] = class_name(**val)
             except FileNotFoundError:
                 pass

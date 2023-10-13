@@ -4,7 +4,7 @@ import uuid
 from models import storage
 
 class BaseModel:
-        
+    
     #id = uuid.uuid4()
     #created_at = datetime.datetime.now()
     #updated_at = datetime.datetime.now()
