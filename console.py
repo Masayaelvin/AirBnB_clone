@@ -1,4 +1,12 @@
 #!/usr/bin/python3
+"""console.py - entry point of the command interpreter
+    - contains the entry point of the command interpreter:
+        - create a new object (ex: a new User or a new Place)
+        - retrieve an object from a file, a database etc…
+        - do operations on objects (count, compute stats, etc…)
+        - update attributes of an object
+        - destroy an object
+"""
 import cmd
 from models.base_model import BaseModel
 from models import storage
