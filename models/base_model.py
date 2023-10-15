@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import datetime
 import uuid
 from models import storage
@@ -7,6 +8,9 @@ class BaseModel:
     """BaseModel class"""
 
     def __init__(self, *args, **kwargs):
+        """
+        Object innit
+        """
         #if kwargs is not empty
         if kwargs and kwargs != None:
             for key, value in kwargs.items():
@@ -30,17 +34,28 @@ class BaseModel:
 
 
     def __str__(self):
+        """String representation of object
+        """
         return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
+        """
+        Oject save function
+        """
         storage.save()
         self.updated_at = datetime.datetime.now()
     
     def delete(self):
+        """
+        Object delete function
+        """
         storage.delete(self)
 
 
     def to_dict(self):
+        """
+        Object dictionary representation
+        """
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
         obj_dict['created_at'] = self.created_at.isoformat()
