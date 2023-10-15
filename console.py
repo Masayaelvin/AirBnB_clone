@@ -2,22 +2,33 @@
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import review
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"    
-    classes = ["BaseModel", "User", "State", "City", "Amenity", \
-                               "Place", "review"]
+    classes = {"BaseModel":BaseModel, "User":User, "State":State, "City":City, "Amenity":Amenity, \
+                               "Place": Place, "review":review}
     def do_create(self, arg):
         """create an instance of a class    Base = BaseModel()
         usage: create <class name>"""
         if arg == "":
             print("** class name missing **")
-        elif arg not in self.classes:
+        elif arg not in self.classes.keys():
             print("** class doesn't exist **")
         else:
-            Base = BaseModel()
-            print(Base.id)
-            Base.save()
+            for k,v in self.classes.items():
+                if k == arg:
+                    instance = v()
+                    print(instance.id)
+                    instance.save()
+            storage.reload()
+                
     
     def do_show(self, arg1):
         """show the string representation of an instance based on the class name and id
