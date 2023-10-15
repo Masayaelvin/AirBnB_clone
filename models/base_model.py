@@ -3,6 +3,7 @@ import datetime
 import uuid
 from models import storage
 
+
 class BaseModel:
     """
     BaseModel class
@@ -12,7 +13,6 @@ class BaseModel:
         """
         Object innit
         """
-        #if kwargs is not empty
         if kwargs and kwargs is not None:
             for key, value in kwargs.items():
                 if key == "__class__":
@@ -20,10 +20,8 @@ class BaseModel:
                 if key == "created_at" or key == "updated_at":
                     value = datetime.datetime.\
                         strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                
                 setattr(self, key, value)
 
-        #otherwise
         if "id" not in kwargs.keys():
             self.id = str(uuid.uuid4())
         if "created_at" not in kwargs.keys():
@@ -31,7 +29,7 @@ class BaseModel:
         if "updated_at" not in kwargs.keys():
             self.updated_at = datetime.datetime.now()
         storage.new(self)
-    
+
     def __str__(self):
         """
         String representation of object
