@@ -7,12 +7,12 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
-from models.review import  review
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City,\
-                "Amenity": Amenity, "Place": Place, "review": review}
+                "Amenity": Amenity, "Place": Place, "Review": Review}
     def do_create(self, arg):
         """create an instance of a class    Base = BaseModel()
         usage: create <class name>"""
@@ -111,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """empty line + ENTER shouldn’t execute anything"""
+        """empty line + ENTER shouldn't execute anything"""
         pass
 
 if __name__ == '__main__':
