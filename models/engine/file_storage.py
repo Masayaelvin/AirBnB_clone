@@ -1,14 +1,13 @@
-#!/usr/bin/python3
-import os
 import json
+import os
 
 class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        return self.__objects
-
+        return self.__objects 
+    
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
         key = str(obj.__class__.__name__) + "." + str(obj.id)
@@ -20,22 +19,17 @@ class FileStorage:
         objects_dict = {}
         for key, val in FileStorage.__objects.items():
             objects_dict[key] = val.to_dict()
-        with open(FileStorage.__file_path, mode='w') as f:
+        with open(FileStorage.__file_path, mode='w', encoding="UTF8") as f:
             json.dump(objects_dict, f)
-
-    def delete(self, obj):
+    
+    def delete(self, arg):
         """deletes obj from __objects if it’s inside"""
-        check = FileStorage.__objects
-        if obj in check:
-            del check[obj]
-        else:
-            pass
-        
-
-
+        if arg in FileStorage.__objects:
+            del FileStorage.__objects[arg]
+            self.save()
+    
     def reload(self):
         """deserializes the JSON file to __objects"""
-
         if os.path.isfile(FileStorage.__file_path):
             try:
                 with open(self.__file_path, "r") as f:
@@ -46,12 +40,12 @@ class FileStorage:
                     from models.city import City
                     from models.amenity import Amenity
                     from models.place import Place
-                    from models.review import review
-                    classes = {"BaseModel":BaseModel, "User":User, "State":State, "City":City, "Amenity":Amenity, \
-                               "Place": Place, "review":review}
+                    from models.review import  review
+                    classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City,\
+                                "Amenity": Amenity, "Place": Place, "Review": review}
                     for key, val in self.__objects.items():
-                        class_name = val["__class__"]
-                        class_name = classes[class_name]
-                        FileStorage.__objects[key] = class_name(**val)
+                        cls_name = val["__class__"]
+                        cls_name = classes[cls_name]
+                        self.__objects[key] = cls_name(**val)
             except FileNotFoundError:
                 pass
