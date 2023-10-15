@@ -63,7 +63,7 @@ class FileStorage:
                             "User": User,
                             "State": State,
                             "City": City,
-                            "Amenity": Amenity
+                            "Amenity": Amenity,
                             "Place": Place,
                             "Review": Review
                             }
