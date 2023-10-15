@@ -71,5 +71,5 @@ class FileStorage:
                         cls_name = val["__class__"]
                         cls_name = classes[cls_name]
                         self.__objects[key] = cls_name(**val)
-            except FileNotFoundError:
-                pass
+             except FileNotFoundError:
+	     	pass
