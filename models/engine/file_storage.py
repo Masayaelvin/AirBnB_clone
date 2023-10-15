@@ -42,7 +42,7 @@ class FileStorage:
                     from models.place import Place
                     from models.review import  review
                     classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City,\
-                                "Amenity": Amenity, "Place": Place, "Review": review}
+                                "Amenity": Amenity, "Place": Place, "review": review}
                     for key, val in self.__objects.items():
                         cls_name = val["__class__"]
                         cls_name = classes[cls_name]

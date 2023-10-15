@@ -12,7 +12,7 @@ from models.review import  review
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     classes = {"BaseModel": BaseModel, "User": User, "State": State, "City": City,\
-                "Amenity": Amenity, "Place": Place, "Review": review}
+                "Amenity": Amenity, "Place": Place, "review": review}
     def do_create(self, arg):
         """create an instance of a class    Base = BaseModel()
         usage: create <class name>"""
