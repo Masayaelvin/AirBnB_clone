@@ -3,21 +3,23 @@ import datetime
 import uuid
 from models import storage
 
-
 class BaseModel:
-    """BaseModel class"""
+    """
+    BaseModel class
+    """
 
     def __init__(self, *args, **kwargs):
         """
         Object innit
         """
         #if kwargs is not empty
-        if kwargs and kwargs != None:
+        if kwargs and kwargs is not None:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
                 if key == "created_at" or key == "updated_at":
-                    value = datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    value = datetime.datetime.\
+                        strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 
                 setattr(self, key, value)
 
@@ -29,14 +31,13 @@ class BaseModel:
         if "updated_at" not in kwargs.keys():
             self.updated_at = datetime.datetime.now()
         storage.new(self)
-        
-        
-
-
+    
     def __str__(self):
-        """String representation of object
         """
-        return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
+        String representation of object
+        """
+        return (f"[{self.__class__.__name__}] ({self.id}) \
+                {self.__dict__}")
 
     def save(self):
         """
@@ -44,13 +45,12 @@ class BaseModel:
         """
         storage.save()
         self.updated_at = datetime.datetime.now()
-    
+
     def delete(self):
         """
         Object delete function
         """
         storage.delete(self)
-
 
     def to_dict(self):
         """
@@ -61,6 +61,3 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return(obj_dict)
-    
-
-      
