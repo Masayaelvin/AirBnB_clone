@@ -2,7 +2,7 @@
 """"""
 from models.base_model import BaseModel
 
-class review(BaseModel):
+class Review(BaseModel):
     """
     framework for the reviews from the user
     """
