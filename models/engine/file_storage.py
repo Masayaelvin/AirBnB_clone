@@ -20,7 +20,7 @@ class FileStorage:
         for key, val in FileStorage.__objects.items():
             objects_dict[key] = val.to_dict()
         with open(FileStorage.__file_path, mode='w', encoding="UTF8") as f:
-            json.dump(objects_dict, f)
+            json.dump(objects_dict, f, indent=4)
     
     def delete(self, arg):
         """deletes obj from __objects if it’s inside"""
