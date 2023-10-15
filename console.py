@@ -67,7 +67,6 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """print all instances of a class
         usage: all <class name>"""
-        # args = arg.split()
         storage_check = storage.all()
         if arg == "":
             for key in storage_check:
