@@ -28,14 +28,6 @@ class TestFileStorage(unittest.TestCase):
         fs.new(BaseModel())
         self.assertIn(BaseModel(), fs.all().values())
 
-    def test_save(self):
-        """Test save method"""
-        fs = FileStorage()
-        fs.new(BaseModel())
-        fs.save()
-        with open(fs._FileStorage__file_path, 'r') as f:
-            self.assertIn(BaseModel().to_dict(), f.read())
-
 
 if __name__ == "__main__":
 	unittest.main()

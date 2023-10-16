@@ -35,50 +35,60 @@ class TestCity(unittest.TestCase):
         self.assertEqual(dict, type(self.city.to_dict()))
 
     def test_no_args_instantiates(self):
+        """Tests the no args instantiates"""
         self.assertEqual(City, type(City()))
 
     def test_new_instance_stored_in_objects(self):
+        """Tests the new instance stored in objects"""
         self.assertIn(City(), models.storage.all().values())
 
     def test_id_is_public_str(self):
+        """Tests the id is public str"""
         self.assertEqual(str, type(City().id))
 
     def test_created_at_is_public_datetime(self):
+        """Tests the created at is public datetime"""
         self.assertEqual(datetime, type(City().created_at))
 
     def test_updated_at_is_public_datetime(self):
         self.assertEqual(datetime, type(City().updated_at))
 
     def test_state_id_is_public_class_attribute(self):
+        """makes sure that public Id is public class attribute"""
         cy = City()
         self.assertEqual(str, type(City.state_id))
         self.assertIn("state_id", dir(cy))
         self.assertNotIn("state_id", cy.__dict__)
 
     def test_name_is_public_class_attribute(self):
+        """tests name is a public class attribute"""
         cy = City()
         self.assertEqual(str, type(City.name))
         self.assertIn("name", dir(cy))
         self.assertNotIn("name", cy.__dict__)
 
     def test_two_cities_unique_ids(self):
+        """checks that the 2 have unique ID's"""
         cy1 = City()
         cy2 = City()
         self.assertNotEqual(cy1.id, cy2.id)
 
     def test_two_cities_different_created_at(self):
+        """checks that the 2 have different created at"""
         cy1 = City()
         sleep(0.05)
         cy2 = City()
         self.assertLess(cy1.created_at, cy2.created_at)
 
     def test_two_cities_different_updated_at(self):
+        """checks that the 2 have different updated at"""
         cy1 = City()
         sleep(0.05)
         cy2 = City()
         self.assertLess(cy1.updated_at, cy2.updated_at)
 
     def test_str_representation(self):
+        """Tests the str representation"""
         dt = datetime.today()
         dt_repr = repr(dt)
         cy = City()
@@ -91,10 +101,12 @@ class TestCity(unittest.TestCase):
         self.assertIn("'updated_at': " + dt_repr, cystr)
 
     def test_args_unused(self):
+        """tests unsused args"""
         cy = City(None)
         self.assertNotIn(None, cy.__dict__.values())
 
     def test_instantiation_with_None_kwargs(self):
+        """Tests the instantiation with None kwargs"""
         with self.assertRaises(TypeError):
             City(id=None, created_at=None, updated_at=None)
 
@@ -107,6 +119,7 @@ class TestCity(unittest.TestCase):
         self.assertNotEqual(self.city, city2)
 
     def test_one_save(self):
+        """tests the save method"""
         cy = City()
         sleep(0.05)
         first_updated_at = cy.updated_at
@@ -114,6 +127,7 @@ class TestCity(unittest.TestCase):
         self.assertLess(first_updated_at, cy.updated_at)
 
     def test_two_saves(self):
+        """tests the save method"""
         cy = City()
         sleep(0.05)
         first_updated_at = cy.updated_at
@@ -125,11 +139,13 @@ class TestCity(unittest.TestCase):
         self.assertLess(second_updated_at, cy.updated_at)
 
     def test_save_with_arg(self):
+        """tests the save method"""
         cy = City()
         with self.assertRaises(TypeError):
             cy.save(None)
 
     def test_save_updates_file(self):
+        """tests the save method"""
         cy = City()
         cy.save()
         cyid = "City." + cy.id
