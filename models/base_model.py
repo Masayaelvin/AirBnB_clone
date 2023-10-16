@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 import datetime
 import uuid
 from models import storage
@@ -34,8 +34,7 @@ class BaseModel:
         """
         String representation of object
         """
-        return (f"[{self.__class__.__name__}] ({self.id}) \
-                {self.__dict__}")
+        return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
         """
@@ -58,4 +57,4 @@ class BaseModel:
         obj_dict['__class__'] = self.__class__.__name__
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
-        return(obj_dict)
+        return (obj_dict)

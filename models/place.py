@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-
 from models.base_model import BaseModel
+
 
 class Place(BaseModel):
     """
     Blueprints for the place objects
-    
     Attributes:
         city_id (str): The ID of the city where the place is located.
         user_id (str): The ID of the user who owns the place.
@@ -34,7 +33,6 @@ class Place(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """Initializes a new Place object.
-        
         Args:
             *args: Variable length argument list.
             **kwargs: Arbitrary keyword arguments.

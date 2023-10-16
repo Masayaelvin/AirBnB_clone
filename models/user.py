@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
     """
-    Represents a user with attributes such as email, password, first name, and last name.
+    Represents a user with attributes such as
+    email, password, first name, and last name.
 
     Example Usage:
-    user = User(email="example@example.com", password="password123", first_name="John", last_name="Doe")
+    user = User(email="example@example.com", password="password123",
+    first_name="John", last_name="Doe")
     print(user.email)  # Output: example@example.com
     """
 
