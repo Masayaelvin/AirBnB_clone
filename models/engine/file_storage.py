@@ -1,6 +1,14 @@
 import json
 import os
-
+#write a documentattion for this class
+"""
+this class serializes instances to a JSON file and deserializes JSON file to instances
+stores all objects by <class name>.id
+stores the objects in the attribute __objects
+loads objects from JSON file to __objects
+returns a dictionary of __objects
+returns the __objects attribute
+"""
 class FileStorage:
     __file_path = "file.json"
     __objects = {}

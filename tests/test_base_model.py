@@ -16,20 +16,24 @@ class TestBaseModel(unittest.TestCase):
 
 
     def test_to_dict(self):
+        """Tests to_dict method of BaseModel"""
         my_model = BaseModel()
         to_dict = my_model.to_dict
         self.assertNotEqual(type(my_model), type(to_dict))
     
     def test_base_model(self):
+        """Tests the BaseModel class"""
         self.assertEqual(BaseModel, type(BaseModel()))
 
     def test_id(self):
+        """Tests the id"""
         base1 = BaseModel()
         base2 = BaseModel()
 
         self.assertNotEqual(base1.id, base2.id)
 
     def test_string(self):
+        """Tests the string"""
         self.assertEqual(str, type(BaseModel().id))
 
     def test_string_repr(self):
