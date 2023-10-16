@@ -1,4 +1,12 @@
 #!/usr/bin/python3
+"""
+this class serializes instances to a JSON file and deserializes JSON file to instances
+stores all objects by <class name>.id
+stores the objects in the attribute __objects
+loads objects from JSON file to __objects
+returns a dictionary of __objects
+returns the __objects attribute
+"""
 import json
 import os
 
