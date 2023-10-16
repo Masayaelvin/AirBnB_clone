@@ -56,30 +56,36 @@ class TestUser(unittest.TestCase):
         self.assertNotEqual(self.user, user2)
 
     def test_no_args_instantiates(self):
+        """Tests the no args instantiates"""
         self.assertEqual(User, type(User()))
 
     def test_two_users_unique_ids(self):
+        """Tests the two users unique ids"""
         us1 = User()
         us2 = User()
         self.assertNotEqual(us1.id, us2.id)
 
     def test_two_users_different_created_at(self):
+        """Tests the two users different created at"""
         us1 = User()
         sleep(0.05)
         us2 = User()
         self.assertLess(us1.created_at, us2.created_at)
 
     def test_two_users_different_updated_at(self):
+        """Tests the two users different updated at"""
         us1 = User()
         sleep(0.05)
         us2 = User()
         self.assertLess(us1.updated_at, us2.updated_at)
 
     def test_args_unused(self):
+        """Tests the args unused"""
         us = User(None)
         self.assertNotIn(None, us.__dict__.values())
 
     def test_instantiation_with_None_kwargs(self):
+        """Tests the instantiation with None kwargs"""
         with self.assertRaises(TypeError):
             User(id=None, created_at=None, updated_at=None)
 
@@ -89,12 +95,14 @@ class TestUser_save(unittest.TestCase):
 
     @classmethod
     def setUp(self):
+        """Sets up the class"""
         try:
             os.rename("file.json", "tmp")
         except IOError:
             pass
 
     def tearDown(self):
+        """Tears down the class"""
         try:
             os.remove("file.json")
         except IOError:
@@ -105,6 +113,7 @@ class TestUser_save(unittest.TestCase):
             pass
 
     def test_one_save(self):
+        """test one save"""
         us = User()
         sleep(0.05)
         first_updated_at = us.updated_at
@@ -112,6 +121,7 @@ class TestUser_save(unittest.TestCase):
         self.assertLess(first_updated_at, us.updated_at)
 
     def test_two_saves(self):
+        """test two saves"""
         us = User()
         sleep(0.05)
         first_updated_at = us.updated_at
@@ -123,11 +133,13 @@ class TestUser_save(unittest.TestCase):
         self.assertLess(second_updated_at, us.updated_at)
 
     def test_save_with_arg(self):
+        """test save with arg"""
         us = User()
         with self.assertRaises(TypeError):
             us.save(None)
 
     def test_save_updates_file(self):
+        """test save updates file"""
         us = User()
         us.save()
         usid = "User." + us.id
@@ -139,9 +151,11 @@ class TestUser_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the User class."""
 
     def test_to_dict_type(self):
+        """test to_dict type"""
         self.assertTrue(dict, type(User().to_dict()))
 
     def test_to_dict_contains_correct_keys(self):
+        """test to_dict contains correct keys"""
         us = User()
         self.assertIn("id", us.to_dict())
         self.assertIn("created_at", us.to_dict())
@@ -149,6 +163,7 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertIn("__class__", us.to_dict())
 
     def test_to_dict_contains_added_attributes(self):
+        """test to_dict contains added attributes"""
         us = User()
         us.middle_name = "Holberton"
         us.my_number = 98
@@ -156,6 +171,7 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertIn("my_number", us.to_dict())
 
     def test_to_dict_datetime_attributes_are_strs(self):
+        """test to_dict datetime attributes are strs"""
         us = User()
         us_dict = us.to_dict()
         self.assertEqual(str, type(us_dict["id"]))
@@ -163,6 +179,7 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertEqual(str, type(us_dict["updated_at"]))
 
     def test_to_dict_output(self):
+        """test to_dict output"""
         dt = datetime.today()
         us = User()
         us.id = "123456"
@@ -176,10 +193,12 @@ class TestUser_to_dict(unittest.TestCase):
         self.assertDictEqual(us.to_dict(), tdict)
 
     def test_contrast_to_dict_dunder_dict(self):
+        """test contrast to_dict dunder dict"""
         us = User()
         self.assertNotEqual(us.to_dict(), us.__dict__)
 
     def test_to_dict_with_arg(self):
+        """test to_dict with arg"""
         us = User()
         with self.assertRaises(TypeError):
             us.to_dict(None)

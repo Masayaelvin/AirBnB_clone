@@ -1,10 +1,9 @@
-#/usr/bin/python3
-"""
-Unittest for FileStorage class
-"""
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
+"""
+Unittest for FileStorage class
+"""
 
 
 class TestFileStorage(unittest.TestCase):
@@ -27,7 +26,3 @@ class TestFileStorage(unittest.TestCase):
         fs = FileStorage()
         fs.new(BaseModel())
         self.assertIn(BaseModel(), fs.all().values())
-
-
-if __name__ == "__main__":
-	unittest.main()
