@@ -93,7 +93,7 @@ class TestBaseModel(unittest.TestCase):
         """Tests that BaseModel.id is a public instance attribute of type str."""
         self.assertEqual(str, type(BaseModel().id))
 
-    def test_created_at_is_public_datetime(self):\
+    def test_created_at_is_public_datetime(self):
         """Tests that BaseModel.created_at is a public instance attribute of type datetime."""
         self.assertEqual(datetime, type(BaseModel().created_at))
 

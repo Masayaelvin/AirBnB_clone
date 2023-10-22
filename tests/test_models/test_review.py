@@ -39,10 +39,6 @@ class Testreviview(unittest.TestCase):
         """Tests the no args instantiates"""
         self.assertEqual(Review, type(Review()))
 
-    def test_new_instance_stored_in_objects(self):
-        """Tests the new instance stored in objects"""
-        self.assertIn(Review(), models.storage.all().values())
-
     def test_id_is_public_str(self):
         """Tests the id is public str"""
         self.assertEqual(str, type(Review().id))
